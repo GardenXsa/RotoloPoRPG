@@ -38,6 +38,7 @@ function App() {
     baseUrl: 'http://localhost:8080',
     apiKey: '',
     model: 'gpt-4',
+    customModelId: '',
   });
   const [showSettings, setShowSettings] = useState(false);
   const [worldDescription, setWorldDescription] = useState('');
@@ -535,6 +536,17 @@ function App() {
                   <option value="custom">Custom</option>
                 </select>
               </div>
+              {apiSettings.model === 'custom' && (
+                <div className="form-group">
+                  <label>Custom Model ID</label>
+                  <input
+                    type="text"
+                    value={apiSettings.customModelId}
+                    onChange={(e) => setApiSettings(prev => ({ ...prev, customModelId: e.target.value }))}
+                    placeholder="Enter custom model ID (e.g., my-model-v1)"
+                  />
+                </div>
+              )}
             </div>
             <div className="modal-footer">
               <button onClick={() => setShowSettings(false)}>Cancel</button>
